@@ -1,0 +1,14 @@
+{
+  "name": "@octohash/lib",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.5.14"
+  },
+  "devDependencies": {
+    "@octohash/vite-config": "workspace:*"
+  }
+}

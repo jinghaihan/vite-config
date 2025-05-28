@@ -1,0 +1,96 @@
+{
+  "name": "@octohash/vite-config",
+  "type": "module",
+  "version": "0.2.0",
+  "packageManager": "pnpm@10.11.0",
+  "description": "A personal ready-to-use Vite configuration repository, opinionated but customizable.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/vite-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/vite-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/vite-config/issues"
+  },
+  "keywords": [
+    "vite",
+    "vite-config"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown --clean --dts",
+    "typecheck": "tsc",
+    "test": "vitest",
+    "lint": "eslint",
+    "commit": "czg",
+    "deps": "taze major -I",
+    "release": "pnpm build && bumpp && pnpm publish --no-git-checks",
+    "catalog": "pncat",
+    "prepare": "npx simple-git-hooks",
+    "bootstrap": "pnpm install",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "peerDependencies": {
+    "vite": "catalog:build"
+  },
+  "dependencies": {
+    "@antfu/install-pkg": "catalog:utils",
+    "@clack/prompts": "catalog:node",
+    "@vitejs/plugin-vue": "catalog:vue-plugin",
+    "@vitejs/plugin-vue-jsx": "catalog:vue-plugin",
+    "dayjs": "catalog:utils",
+    "deepmerge": "catalog:utils",
+    "find-up": "catalog:node",
+    "local-pkg": "catalog:node",
+    "pkg-types": "catalog:node",
+    "rollup-plugin-visualizer": "catalog:common-plugin",
+    "unplugin-auto-import": "catalog:vue-plugin",
+    "unplugin-vue-components": "catalog:vue-plugin",
+    "unplugin-vue-router": "catalog:vue-plugin",
+    "vite-plugin-dts": "catalog:common-plugin",
+    "vite-plugin-dynamic-base": "catalog:common-plugin"
+  },
+  "optionalDependencies": {
+    "@intlify/unplugin-vue-i18n": "catalog:vue-plugin",
+    "@originjs/vite-plugin-federation": "catalog:common-plugin",
+    "vite-plugin-jspm": "catalog:common-plugin",
+    "vite-plugin-vue-devtools": "catalog:vue-plugin"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:lint",
+    "@jspm/generator": "catalog:dev",
+    "@octohash/tsconfig": "catalog:dev",
+    "@types/node": "catalog:types",
+    "bumpp": "catalog:cli",
+    "czg": "catalog:cli",
+    "eslint": "catalog:lint",
+    "fast-glob": "catalog:node",
+    "lint-staged": "catalog:lint",
+    "pncat": "catalog:cli",
+    "simple-git-hooks": "catalog:lint",
+    "taze": "catalog:cli",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:test"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
