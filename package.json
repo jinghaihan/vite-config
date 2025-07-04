@@ -2,7 +2,7 @@
   "name": "@octohash/vite-config",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.12.4",
   "description": "A personal ready-to-use Vite configuration repository, opinionated but customizable.",
   "author": "jinghaihan",
   "license": "MIT",
@@ -38,11 +38,12 @@
     "lint": "eslint",
     "commit": "czg",
     "deps": "taze major -I",
-    "release": "pnpm build && bumpp && pnpm publish --no-git-checks",
+    "release": "bumpp && pnpm publish --no-git-checks",
     "catalog": "pncat",
     "prepare": "npx simple-git-hooks",
     "bootstrap": "pnpm install",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "vite": "catalog:build"
