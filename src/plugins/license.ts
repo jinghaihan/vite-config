@@ -25,6 +25,7 @@ export async function LicensePlugin(options?: LicensePluginOptions): Promise<Plu
     enforce: 'post',
     apply: 'build',
     generateBundle: {
+      order: 'post',
       handler: (_options, bundle) => {
         for (const [, fileContent] of Object.entries(bundle)) {
           if (fileContent.type === 'chunk' && fileContent.isEntry) {

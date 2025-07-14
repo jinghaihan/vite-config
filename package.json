@@ -2,7 +2,7 @@
   "name": "@octohash/vite-config",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "description": "A personal ready-to-use Vite configuration repository, opinionated but customizable.",
   "author": "jinghaihan",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "vite": "catalog:build"
+    "vite": ">=6.0.0 <7.0.0"
   },
   "dependencies": {
     "@antfu/install-pkg": "catalog:utils",
