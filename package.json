@@ -46,30 +46,30 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "vite": ">=6.0.0 <7.0.0"
+    "vite": ">=6.0.0"
   },
   "dependencies": {
     "@antfu/install-pkg": "catalog:utils",
     "@clack/prompts": "catalog:node",
-    "@vitejs/plugin-vue": "catalog:vue-plugin",
-    "@vitejs/plugin-vue-jsx": "catalog:vue-plugin",
+    "@vitejs/plugin-vue": "catalog:vue",
+    "@vitejs/plugin-vue-jsx": "catalog:vue",
     "dayjs": "catalog:utils",
     "deepmerge": "catalog:utils",
     "find-up": "catalog:node",
     "local-pkg": "catalog:node",
     "pkg-types": "catalog:node",
-    "rollup-plugin-visualizer": "catalog:common-plugin",
-    "unplugin-auto-import": "catalog:vue-plugin",
-    "unplugin-vue-components": "catalog:vue-plugin",
-    "unplugin-vue-router": "catalog:vue-plugin",
-    "vite-plugin-dts": "catalog:common-plugin",
-    "vite-plugin-dynamic-base": "catalog:common-plugin"
+    "rollup-plugin-visualizer": "catalog:common",
+    "unplugin-auto-import": "catalog:vue",
+    "unplugin-vue-components": "catalog:vue",
+    "unplugin-vue-router": "catalog:vue",
+    "vite-plugin-dts": "catalog:common",
+    "vite-plugin-dynamic-base": "catalog:common"
   },
   "optionalDependencies": {
-    "@intlify/unplugin-vue-i18n": "catalog:vue-plugin",
-    "@originjs/vite-plugin-federation": "catalog:common-plugin",
-    "vite-plugin-jspm": "catalog:common-plugin",
-    "vite-plugin-vue-devtools": "catalog:vue-plugin"
+    "@intlify/unplugin-vue-i18n": "catalog:vue",
+    "@originjs/vite-plugin-federation": "catalog:common",
+    "vite-plugin-jspm": "catalog:common",
+    "vite-plugin-vue-devtools": "catalog:vue"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
