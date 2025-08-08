@@ -1,13 +1,12 @@
 import { defineConfig, mergeCatalogRules } from 'pncat'
 
 export default defineConfig({
-  ignorePaths: [
-    'playground',
-  ],
+  ignorePaths: ['playground'],
+  depFields: { optionalDependencies: true },
   catalogRules: mergeCatalogRules([
     {
       name: 'vue',
-      match: [/plugin-vue/, 'unplugin-auto-import'],
+      match: [/vue/, 'unplugin-auto-import'],
       priority: 0,
     },
     {

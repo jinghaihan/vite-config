@@ -2,7 +2,7 @@
   "name": "@octohash/vite-config",
   "type": "module",
   "version": "0.2.2",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "description": "A personal ready-to-use Vite configuration repository, opinionated but customizable.",
   "author": "jinghaihan",
   "license": "MIT",
@@ -19,12 +19,12 @@
     "vite-config"
   ],
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public"
   },
@@ -32,11 +32,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown --clean --dts",
+    "build": "unbuild",
     "typecheck": "tsc",
     "test": "vitest",
     "lint": "eslint",
-    "commit": "czg",
     "deps": "taze major -I",
     "release": "bumpp && pnpm publish --no-git-checks",
     "catalog": "pncat",
@@ -77,15 +76,14 @@
     "@octohash/tsconfig": "catalog:dev",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
-    "czg": "catalog:cli",
     "eslint": "catalog:lint",
-    "fast-glob": "catalog:node",
     "lint-staged": "catalog:lint",
     "pncat": "catalog:cli",
     "simple-git-hooks": "catalog:lint",
     "taze": "catalog:cli",
-    "tsdown": "catalog:build",
+    "tinyglobby": "catalog:node",
     "typescript": "catalog:dev",
+    "unbuild": "catalog:build",
     "vitest": "catalog:test"
   },
   "simple-git-hooks": {
