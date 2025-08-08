@@ -3,7 +3,7 @@ packages:
   - playground/*
 catalogs:
   build:
-    tsdown: ^0.13.3
+    unbuild: ^3.6.0
   cli:
     bumpp: ^10.2.2
     czg: ^1.12.0
