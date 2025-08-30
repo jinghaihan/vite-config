@@ -1,7 +1,7 @@
 {
   "name": "@octohash/vite-config",
   "type": "module",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "packageManager": "pnpm@10.15.0",
   "description": "A personal ready-to-use Vite configuration repository, opinionated but customizable.",
   "author": "jinghaihan",
