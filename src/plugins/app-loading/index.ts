@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
+import { PACKAGE_ROOT } from '../../constants'
 
 export interface AppLoadingPluginOptions {
   rootContainer?: string
@@ -23,7 +24,7 @@ export async function AppLoadingPlugin(options?: AppLoadingPluginOptions): Promi
   const {
     rootContainer = 'app',
     title = '',
-    filePath = path.join(__dirname, './default-loading.html'),
+    filePath = path.join(PACKAGE_ROOT, './default-loading.html'),
   } = options || {}
 
   const loadingHtml = await getLoadingRawByHtmlTemplate(filePath)
