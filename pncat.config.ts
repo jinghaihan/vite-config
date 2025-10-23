@@ -4,17 +4,18 @@ export default defineConfig({
   catalogRules: mergeCatalogRules([
     {
       name: 'vue',
-      match: [/vue/, 'unplugin-auto-import'],
+      match: [/vue/],
       priority: 0,
     },
     {
       name: 'common',
-      match: [/vite-plugin/, /rollup-plugin/],
+      match: [/vite-plugin/, /unplugin/, /visualizer/],
       priority: 0,
     },
     {
-      name: 'node',
-      match: ['@antfu/install-pkg'],
+      name: 'pkg',
+      match: ['local-pkg', 'pkg-types', '@antfu/install-pkg'],
+      priority: 0,
     },
   ]),
   depFields: {

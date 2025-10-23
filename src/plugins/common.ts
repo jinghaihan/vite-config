@@ -1,6 +1,5 @@
 import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
-import { visualizer as Visualizer } from 'rollup-plugin-visualizer'
 import { ensurePackages } from '../ensure'
 import { loadPlugins } from '../utils'
 import { LicensePlugin } from './license'
@@ -15,17 +14,19 @@ export async function loadCommonPlugins(options: OptionsConfig): Promise<PluginO
   return await loadPlugins([
     {
       condition: isBuild && !!visualizer,
-      plugins: () => [
-        Visualizer(
-          typeof visualizer === 'boolean'
-            ? {
-                filename: './node_modules/.cache/visualizer/stats.html',
-                gzipSize: true,
-                open: true,
-              }
-            : visualizer,
-        ) as PluginOption,
-      ],
+      plugins: async () => {
+        const module = await import('vite-bundle-visualizer')
+        return [
+          module.default(
+            typeof visualizer === 'boolean'
+              ? {
+                  output: './node_modules/.cache/visualizer/stats.html',
+                  open: true,
+                }
+              : visualizer,
+          ) as PluginOption,
+        ]
+      },
     },
     {
       condition: isBuild && !!license,

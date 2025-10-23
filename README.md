@@ -7,7 +7,7 @@
 Opinionated but customizable, with built-in support for unplugin, i18n, and more.
 
 ```bash
-pnpm add -d @octohash/vite-config
+pnpm add -D @octohash/vite-config
 ```
 
 ## Usage
@@ -58,7 +58,7 @@ interface OptionsConfig {
 
   // Common Plugin
   /**
-   * https://github.com/btd/rollup-plugin-visualizer
+   * https://github.com/KusStar/vite-bundle-visualizer
    * By default template path is: ./node_modules/.cache/visualizer/stats.html
    *
    * @default false

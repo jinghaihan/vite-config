@@ -1,6 +1,5 @@
 import type { PluginOptions as VueI18nPluginOptions } from '@intlify/unplugin-vue-i18n'
 import type { VitePluginFederationOptions as FederationPluginOptions } from '@originjs/vite-plugin-federation'
-import type { PluginVisualizerOptions as VisualizerPluginOptions } from 'rollup-plugin-visualizer'
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as VueComponentsPluginOptions } from 'unplugin-vue-components'
 import type { Options as VuePagesPluginOptions } from 'unplugin-vue-router'
@@ -16,12 +15,18 @@ export type ProjectType = 'app' | 'lib'
 
 export interface CommonPluginOptions {
   /**
-   * https://github.com/btd/rollup-plugin-visualizer
+   * https://github.com/KusStar/vite-bundle-visualizer
    * By default template path is: ./node_modules/.cache/visualizer/stats.html
    *
    * @default false
    */
-  visualizer?: boolean | VisualizerPluginOptions
+  visualizer?: boolean | {
+    help?: boolean
+    template?: 'treemap' | 'sunburst' | 'network'
+    output?: string
+    open?: boolean
+    config?: string
+  }
   /**
    * Inject license info to output files
    * Load license file from `package.json`, if it is a monorepo project, the root `package.json` will also be merged
