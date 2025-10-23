@@ -1,7 +1,6 @@
 import type { PluginOption } from 'vite'
 import { EOL } from 'node:os'
-import dayjs from 'dayjs'
-import { extractAuthorInfo, loadMergedPackageJson } from '../utils'
+import { currentTime, extractAuthor, mergePackageJSON } from '../utils'
 
 export interface LicensePluginOptions {
   name?: string
@@ -27,13 +26,9 @@ export async function LicensePlugin(options?: LicensePluginOptions): Promise<Plu
     generateBundle: {
       order: 'post',
       handler: (_options, bundle) => {
-        for (const [, fileContent] of Object.entries(bundle)) {
-          if (fileContent.type === 'chunk' && fileContent.isEntry) {
-            const chunkContent = fileContent
-            const content = chunkContent.code
-            const updatedContent = `${licenseText}${EOL}${content}`
-            fileContent.code = updatedContent
-          }
+        for (const [, content] of Object.entries(bundle)) {
+          if (content.type === 'chunk' && content.isEntry)
+            content.code = `${licenseText}${EOL}${content.code}`
         }
       },
     },
@@ -41,15 +36,15 @@ export async function LicensePlugin(options?: LicensePluginOptions): Promise<Plu
 }
 
 async function generateLicenseText(options: LicensePluginOptions): Promise<string> {
-  const pkgJson = await loadMergedPackageJson()
-  const { name: authorName, email: authorEmail, url: authorUrl } = extractAuthorInfo(pkgJson)
+  const data = await mergePackageJSON()
+  const { name: authorName, email: authorEmail, url: authorUrl } = extractAuthor(data)
 
   const {
-    name = pkgJson.name,
+    name = data.name,
     author = authorName,
-    version = pkgJson.version,
-    description = pkgJson.description,
-    homepage = pkgJson.homepage ?? authorUrl,
+    version = data.version,
+    description = data.description,
+    homepage = data.homepage ?? authorUrl,
     license,
     contact = authorEmail,
     copyright = {
@@ -58,7 +53,7 @@ async function generateLicenseText(options: LicensePluginOptions): Promise<strin
     },
   } = options ?? {}
 
-  const date = dayjs().format('YYYY-MM-DD')
+  const date = currentTime('YYYY-MM-DD')
   const lines: string[] = []
 
   lines.push('/*!')

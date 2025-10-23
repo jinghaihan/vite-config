@@ -1,8 +1,6 @@
 import { defineConfig, mergeCatalogRules } from 'pncat'
 
 export default defineConfig({
-  ignorePaths: ['playground'],
-  depFields: { optionalDependencies: true },
   catalogRules: mergeCatalogRules([
     {
       name: 'vue',
@@ -15,8 +13,12 @@ export default defineConfig({
       priority: 0,
     },
     {
-      name: 'utils',
+      name: 'node',
       match: ['@antfu/install-pkg'],
     },
   ]),
+  depFields: {
+    optionalDependencies: true,
+  },
+  postRun: 'eslint --fix "**/package.json" "**/pnpm-workspace.yaml"',
 })

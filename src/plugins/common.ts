@@ -2,22 +2,17 @@ import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
 import { visualizer as Visualizer } from 'rollup-plugin-visualizer'
 import { ensurePackages } from '../ensure'
-import { loadConditionPlugins } from '../utils'
+import { loadPlugins } from '../utils'
 import { LicensePlugin } from './license'
 
 export async function loadCommonPlugins(options: OptionsConfig): Promise<PluginOption[]> {
-  const {
-    isBuild,
-    visualizer = false,
-    license = true,
-    federation,
-  } = options
+  const { isBuild, visualizer = false, license = true, federation } = options
 
   ensurePackages([
     federation ? '@originjs/vite-plugin-federation' : undefined,
   ])
 
-  return await loadConditionPlugins([
+  return await loadPlugins([
     {
       condition: isBuild && !!visualizer,
       plugins: () => [
@@ -29,7 +24,7 @@ export async function loadCommonPlugins(options: OptionsConfig): Promise<PluginO
                 open: true,
               }
             : visualizer,
-        ),
+        ) as PluginOption,
       ],
     },
     {

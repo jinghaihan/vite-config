@@ -5,7 +5,7 @@ import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { isPackageExists } from 'local-pkg'
 import { ensurePackages } from '../ensure'
-import { loadConditionPlugins, resolveSubOptions } from '../utils'
+import { extractOptions, loadPlugins } from '../utils'
 
 export async function loadVuePlugins(projectType: ProjectType, options: OptionsConfig): Promise<PluginOption[]> {
   const { isBuild } = options
@@ -16,14 +16,14 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
     imports = isApp,
     components = isApp,
     pages = isApp,
-  } = resolveSubOptions(options, 'vue')
+  } = extractOptions(options, 'vue')
 
   await ensurePackages([
     devtools ? 'vite-plugin-vue-devtools' : undefined,
     i18n ? '@intlify/unplugin-vue-i18n' : undefined,
   ])
 
-  return loadConditionPlugins([
+  return loadPlugins([
     {
       condition: true,
       plugins: () => [

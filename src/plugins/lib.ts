@@ -1,20 +1,16 @@
 import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
 import Dts from 'vite-plugin-dts'
-import { loadConditionPlugins } from '../utils'
+import { loadPlugins } from '../utils'
 import { loadCommonPlugins } from './common'
 import { loadVuePlugins } from './vue'
 
 export async function loadLibPlugins(options: OptionsConfig): Promise<PluginOption[]> {
-  const {
-    isBuild,
-    dts = true,
-    vue,
-  } = options
+  const { isBuild, dts = true, vue } = options
 
   const plugins: PluginOption[] = await loadCommonPlugins(options)
 
-  plugins.push(await loadConditionPlugins([
+  plugins.push(await loadPlugins([
     {
       condition: isBuild && !!dts,
       plugins: () => [

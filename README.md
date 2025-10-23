@@ -4,8 +4,7 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-> [!NOTE]
-> My personal vite config, opinionated but customizable, with built-in support for unplugin, i18n, and more.
+Opinionated but customizable, with built-in support for unplugin, i18n, and more.
 
 ```bash
 pnpm add -d @octohash/vite-config

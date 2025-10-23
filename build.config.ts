@@ -1,23 +1,32 @@
-import { promises } from 'node:fs'
-import { basename, join } from 'node:path'
+import { copyFileSync } from 'node:fs'
+import { basename, join } from 'pathe'
 import { glob } from 'tinyglobby'
 import { defineBuildConfig } from 'unbuild'
-import { optionalDependencies } from './package.json'
+import pkg from './package.json'
 
 export default defineBuildConfig({
   entries: ['src/index'],
   declaration: 'node16',
   clean: true,
-  externals: Object.keys(optionalDependencies),
-  failOnWarn: false,
+  rollup: {
+    inlineDependencies: true,
+    json: {
+      compact: true,
+      namedExports: false,
+      preferConst: true,
+    },
+    commonjs: {
+      requireReturnsDefault: 'auto',
+    },
+    dts: {
+      respectExternal: false,
+    },
+  },
+  externals: Object.keys(pkg.optionalDependencies),
   hooks: {
     'mkdist:done': async () => {
-      const patterns = ['html'].map(ext => `src/**/*.${ext}`)
-      const files = await glob(patterns)
-      for (const file of files) {
-        await promises.copyFile(file, join('dist', basename(file)))
-      }
-      console.log(`✔ Copied ${files.length} assets to dist/`)
+      for (const file of await glob(['src/**/*.html']))
+        copyFileSync(file, join('dist', basename(file)))
     },
   },
 })

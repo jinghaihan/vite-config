@@ -23,11 +23,7 @@ export async function ImportMapPlugin(options: ImportMapPluginOptions = {}): Pro
   await ensurePackages(['vite-plugin-jspm'])
   const module = await import('vite-plugin-jspm')
 
-  const {
-    defaultProvider = 'jspm.io',
-    include = [],
-    exclude = [],
-  } = options
+  const { defaultProvider = 'jspm.io', include = [], exclude = [] } = options
 
   const [scan, mapping, post] = await module.default({
     ...options,

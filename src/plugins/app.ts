@@ -1,6 +1,6 @@
 import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
-import { loadConditionPlugins } from '../utils'
+import { loadPlugins } from '../utils'
 import { AppLoadingPlugin } from './app-loading'
 import { loadCommonPlugins } from './common'
 import { ImportMapPlugin } from './import-map'
@@ -19,7 +19,7 @@ export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOpti
 
   const plugins: PluginOption[] = await loadCommonPlugins(options)
 
-  plugins.push(await loadConditionPlugins([
+  plugins.push(await loadPlugins([
     {
       condition: !!dynamicBase,
       plugins: async () => {

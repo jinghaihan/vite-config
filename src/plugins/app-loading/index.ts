@@ -1,12 +1,12 @@
 import type { PluginOption } from 'vite'
-import fsp from 'node:fs/promises'
-import path from 'node:path'
+import { readFile } from 'node:fs/promises'
+import { join } from 'pathe'
 import { PACKAGE_ROOT } from '../../constants'
 
 export interface AppLoadingPluginOptions {
-  rootContainer?: string
+  container?: string
   title?: string
-  filePath?: string
+  filepath?: string
 }
 
 const INJECT_SCRIPT = `
@@ -22,12 +22,12 @@ const INJECT_SCRIPT = `
 
 export async function AppLoadingPlugin(options?: AppLoadingPluginOptions): Promise<PluginOption> {
   const {
-    rootContainer = 'app',
+    container = 'app',
     title = '',
-    filePath = path.join(PACKAGE_ROOT, './default-loading.html'),
+    filepath = join(PACKAGE_ROOT, './default-loading.html'),
   } = options || {}
 
-  const loadingHtml = await getLoadingRawByHtmlTemplate(filePath)
+  const loadingHtml = await readFile(filepath, 'utf8')
 
   return {
     name: 'vite-plugin-app-loading',
@@ -35,26 +35,11 @@ export async function AppLoadingPlugin(options?: AppLoadingPluginOptions): Promi
     transformIndexHtml: {
       order: 'pre',
       handler: (html: string) => {
-        const rootContainerPattern = new RegExp(`<div id="${rootContainer}"\\s*></div>`, 'i')
-        if (!rootContainerPattern.test(html)) {
+        const pattern = new RegExp(`<div id="${container}"\\s*></div>`, 'i')
+        if (!pattern.test(html))
           return html
-        }
-
-        const processedLoadingHtml = loadingHtml.replace(
-          '[app-loading-title]',
-          title,
-        )
-        const injectedContent = `${INJECT_SCRIPT}${processedLoadingHtml}`
-
-        return html.replace(
-          rootContainerPattern,
-          `<div id="${rootContainer}">${injectedContent}</div>`,
-        )
+        return html.replace(pattern, `<div id="${container}">${`${INJECT_SCRIPT}${loadingHtml.replace('[app-loading-title]', title)}`}</div>`)
       },
     },
   }
-}
-
-async function getLoadingRawByHtmlTemplate(filePath: string) {
-  return await fsp.readFile(filePath, 'utf8')
 }

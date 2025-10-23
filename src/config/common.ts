@@ -1,7 +1,7 @@
 import type { UserConfig } from 'vite'
 import type { OptionsConfig } from '../types'
-import { isAbsolute, resolve } from 'node:path'
 import process from 'node:process'
+import { isAbsolute, resolve } from 'pathe'
 
 export async function getCommonConfig(options: OptionsConfig): Promise<UserConfig> {
   const { alias = {} } = options

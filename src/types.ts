@@ -146,6 +146,11 @@ export interface OptionsConfig extends CommonPluginOptions, AppPluginOptions, Li
    * @default auto-detect based on the dependencies
    */
   vue?: boolean | OptionsVue
+  /**
+   * Vite configuration override
+   *
+   * @default {}
+   */
   vite?: UserConfig
 }
 
