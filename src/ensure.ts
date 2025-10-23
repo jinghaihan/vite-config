@@ -9,10 +9,10 @@ export function isPackageInScope(name: string): boolean {
   return isPackageExists(name, { paths: [scopeUrl] })
 }
 
-export async function ensurePackages(packages: (string | undefined)[]): Promise<void> {
+export async function ensurePackages(packages: (string | undefined)[], dev: boolean = true): Promise<void> {
   if (process.env.CI || process.stdout.isTTY === false || isCwdInScope === false)
     return
-  const pkgs = packages.filter(i => i && !isPackageInScope(i)) as string[]
+  const pkgs = packages.filter(i => i && !isPackageInScope(i) && !isPackageExists(i)) as string[]
   if (pkgs.length === 0)
     return
 
@@ -22,6 +22,6 @@ export async function ensurePackages(packages: (string | undefined)[]): Promise<
   })
   if (result) {
     const { installPackage } = await import('@antfu/install-pkg')
-    await installPackage(pkgs, { dev: true })
+    await installPackage(pkgs, { dev })
   }
 }

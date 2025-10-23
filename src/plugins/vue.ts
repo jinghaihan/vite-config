@@ -1,9 +1,11 @@
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { PluginOption } from 'vite'
 import type { OptionsConfig, ProjectType } from '../types'
+import process from 'node:process'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { isPackageExists } from 'local-pkg'
+import { resolve } from 'pathe'
 import { ensurePackages } from '../ensure'
 import { extractOptions, loadPlugins } from '../utils'
 
@@ -22,6 +24,9 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
     devtools ? 'vite-plugin-vue-devtools' : undefined,
     i18n ? '@intlify/unplugin-vue-i18n' : undefined,
   ])
+
+  if (i18n)
+    await ensurePackages(['vue-i18n'], false)
 
   return loadPlugins([
     {
@@ -55,6 +60,7 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
                   compositionOnly: true,
                   fullInstall: true,
                   runtimeOnly: true,
+                  include: [resolve(process.cwd(), 'i18n/**')],
                 }
               : i18n,
           ),
@@ -132,6 +138,11 @@ async function resolveAutoImports(): Promise<VueImportsPluginOptions['imports']>
 
   if (isPackageExists('vue-i18n'))
     imports.push('vue-i18n')
+
+  if (isPackageExists('@unhead/vue')) {
+    const { unheadVueComposablesImports } = await import('@unhead/vue')
+    imports.push(unheadVueComposablesImports)
+  }
 
   return imports
 }

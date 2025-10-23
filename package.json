@@ -44,6 +44,7 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
+    "@unhead/vue": ">=2.0.0",
     "vite": ">=7.0.0"
   },
   "dependencies": {
