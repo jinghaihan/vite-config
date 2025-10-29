@@ -30,14 +30,16 @@ export function defineLibConfig(options: OptionsConfig) {
       build: {
         lib: {
           entry: 'src/index.ts',
-          fileName: () => 'index.mjs',
+          fileName: (_, name) => `${name}.mjs`,
           formats: ['es'],
         },
         rollupOptions: {
+          output: {
+            preserveModules: true,
+            preserveModulesRoot: 'src',
+          },
           external: (id) => {
-            return externalPackages.some(
-              pkg => id === pkg || id.startsWith(`${pkg}/`),
-            )
+            return externalPackages.some(pkg => id === pkg || id.startsWith(`${pkg}/`))
           },
         },
       },
