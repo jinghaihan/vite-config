@@ -1,7 +1,7 @@
 {
   "name": "@octohash/vite-config",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "packageManager": "pnpm@10.19.0",
   "description": "Opinionated Vite config preset.",
   "author": "jinghaihan",
