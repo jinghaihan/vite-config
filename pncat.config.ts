@@ -4,7 +4,7 @@ export default defineConfig({
   catalogRules: mergeCatalogRules([
     {
       name: 'plugin',
-      match: [/plugin/],
+      match: [/plugin/, /bundle/],
       priority: 0,
     },
     {

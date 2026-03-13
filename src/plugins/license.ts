@@ -53,7 +53,7 @@ async function generateLicenseText(options: LicensePluginOptions): Promise<strin
     },
   } = options ?? {}
 
-  const date = currentTime('YYYY-MM-DD')
+  const date = currentTime()
   const lines: string[] = []
 
   lines.push('/*!')
