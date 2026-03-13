@@ -31,7 +31,6 @@ catalogs:
   prod:
     '@antfu/install-pkg': ^1.1.0
     '@clack/prompts': ^1.1.0
-    dayjs: ^1.11.20
     empathic: ^2.0.0
     local-pkg: ^1.1.2
     pathe: ^2.0.3

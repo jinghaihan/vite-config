@@ -11,7 +11,7 @@ export async function MetadataPlugin(options?: MetadataPluginOptions): Promise<P
   const data = await mergePackageJSON()
   const { name, description, homepage, license, version } = data
   const { name: authorName, email: authorEmail, url: authorUrl } = extractAuthor(data)
-  const buildTime = currentTime('YYYY-MM-DD HH:mm:ss')
+  const buildTime = currentTime()
 
   return {
     name: 'vite-plugin-metadata',

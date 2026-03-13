@@ -58,7 +58,6 @@
     "vite-plugin-dynamic-base": "catalog:plugin",
     "@antfu/install-pkg": "catalog:prod",
     "@clack/prompts": "catalog:prod",
-    "dayjs": "catalog:prod",
     "empathic": "catalog:prod",
     "local-pkg": "catalog:prod",
     "pathe": "catalog:prod",

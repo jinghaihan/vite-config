@@ -3,15 +3,14 @@ import type { PluginOption } from 'vite'
 import type { ConditionPlugin, OptionsConfig, ProjectType, ResolvedOptions } from './types'
 import { existsSync } from 'node:fs'
 import process from 'node:process'
-import dayjs from 'dayjs'
 import deepmerge from 'deepmerge'
 import { any as findUp } from 'empathic/find'
 import { join } from 'pathe'
 import { readPackageJSON } from 'pkg-types'
 import { LOCK_FILES } from './constants'
 
-export function currentTime(format: string = 'YYYY-MM-DD HH:mm:ss') {
-  return dayjs().format(format)
+export function currentTime() {
+  return new Date().toISOString()
 }
 
 export function getProjectType(): ProjectType {
