@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs'
 import process from 'node:process'
 import dayjs from 'dayjs'
 import deepmerge from 'deepmerge'
-import { findUp } from 'find-up'
+import { any as findUp } from 'empathic/find'
 import { join } from 'pathe'
 import { readPackageJSON } from 'pkg-types'
 import { LOCK_FILES } from './constants'
@@ -20,7 +20,7 @@ export function getProjectType(): ProjectType {
 
 export async function mergePackageJSON(): Promise<PackageJson> {
   const cwd = process.cwd()
-  const filepath = await findUp(LOCK_FILES, { cwd, type: 'file' })
+  const filepath = await findUp(LOCK_FILES, { cwd })
   const data = filepath ? await readPackageJSON(filepath) : {}
   return deepmerge(data, await readPackageJSON(cwd))
 }
