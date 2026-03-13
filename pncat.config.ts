@@ -8,7 +8,7 @@ export default defineConfig({
       priority: 0,
     },
     {
-      name: 'inline',
+      name: 'inlined',
       match: ['deepmerge'],
       priority: 0,
     },
