@@ -1,26 +1,60 @@
+import type { UserConfig } from 'vite'
 import type { OptionsConfig } from './types'
 import { isPackageExists } from 'local-pkg'
-import { defineAppConfig } from './config/app'
-import { defineLibConfig } from './config/lib'
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite'
+import { getCommonConfig } from './config'
 import { VUE_PACKAGES } from './constants'
-import { getProjectType } from './utils'
+import { loadAppPlugins } from './plugins'
 
 export * from './types'
 
 export function defineConfig(options: OptionsConfig) {
   const resolved = {
-    type: getProjectType(),
     vue: VUE_PACKAGES.some(pkg => isPackageExists(pkg)),
     ...options,
   }
 
-  switch (resolved.type) {
-    case 'app':
-      return defineAppConfig(resolved)
-    case 'lib':
-      return defineLibConfig(resolved)
-      break
-    default:
-      throw new Error(`Unsupported project type: ${resolved.type}`)
-  }
+  return defineViteConfig(async (config) => {
+    const { dynamicBase, vite = {} } = resolved
+    const { command } = config
+    const isBuild = command === 'build'
+
+    const plugins = await loadAppPlugins({
+      ...resolved,
+      isBuild,
+    })
+
+    const appConfig: UserConfig = {
+      base: dynamicBase ? '/__dynamic_base__/' : '/',
+      plugins,
+      build: {
+        target: 'es2015',
+        rollupOptions: {
+          output: {
+            assetFileNames: '[ext]/[name]-[hash].[ext]',
+            chunkFileNames: 'js/[name]-[hash].js',
+            entryFileNames: 'jse/index-[name]-[hash].js',
+          },
+        },
+      },
+      esbuild: {
+        drop: isBuild
+          ? [
+              // 'console',
+              'debugger',
+            ]
+          : [],
+        legalComments: 'none',
+      },
+      server: {
+        host: true,
+      },
+    }
+
+    const mergedCommonConfig = mergeConfig(
+      await getCommonConfig(resolved),
+      appConfig,
+    )
+    return mergeConfig(mergedCommonConfig, vite)
+  })
 }

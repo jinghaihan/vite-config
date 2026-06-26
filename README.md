@@ -12,7 +12,7 @@ pnpm add -D @octohash/vite-config
 
 ## Usage
 
-Automatically detects the project type (app or library) and applies suitable plugins. Manual configuration is rarely needed.
+Provides an application-focused Vite preset with suitable plugins. Manual configuration is rarely needed.
 
 ```ts
 import { defineConfig } from '@octohash/vite-config'
@@ -32,7 +32,7 @@ export default defineConfig({
 
 ## Customization
 
-The following is the top-level configuration (OptionsConfig) used to customize the Vite setup. It covers project type detection, alias resolution, common plugins, and both app/library-specific options.
+The following is the top-level configuration (OptionsConfig) used to customize the Vite setup. It covers alias resolution, common plugins, and application-specific options.
 
 ```ts
 interface OptionsConfig {
@@ -42,12 +42,6 @@ interface OptionsConfig {
    * @default auto-detect based on `command === 'build'`
    */
   isBuild?: boolean
-  /**
-   * Type of the project
-   *
-   * @default auto-detect based on the `index.html` file
-   */
-  type?: ProjectType
   /**
    * Aliases used to replace values in `import` or `require` statements
    * Paths are automatically resolved if needed
@@ -83,25 +77,16 @@ interface OptionsConfig {
    * You can customize the root element and loading template
    * Use `[app-loading-title]` as a placeholder to dynamically set the document title during loading`
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   appLoading?: boolean | AppLoadingPluginOptions
   /**
    * Injects metadata using `define`, accessible via `__VITE_APP_METADATA__`.
    * Includes information such as author, build time, version, and more.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   metadata?: boolean | MetadataPluginOptions
-  // Library Plugin
-  /**
-   * https://github.com/qmhc/vite-plugin-dts
-   * Generates declaration files from .ts or .vue source files
-   *
-   * @default auto-detect based on `projectType === 'lib'`
-   */
-  dts?: boolean | DtsPluginOptions
-
   // Vue Plugin
   /**
    * Enable Vue support
@@ -139,7 +124,7 @@ interface OptionsVue {
    * Automatically imports commonly used APIs such as `vue`, `vue-router`, `pinia`, `@vueuse/core`, etc
    * Also supports auto-importing UI components from libraries like `ant-design-vue`, `element-plus`, etc
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   imports?: boolean | VueImportsPluginOptions
   /**
@@ -147,7 +132,7 @@ interface OptionsVue {
    * Enabled by default when the project type is `app`
    * The `directoryAsNamespace` option is enabled by default.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   components?: boolean | VueComponentsPluginOptions
   /**
@@ -155,7 +140,7 @@ interface OptionsVue {
    * Enabled by default when the project type is `app`
    * Folder(s) to scan for files and generate routes. Defaults to scanning the pages directory.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   pages?: boolean | VuePagesPluginOptions
 }

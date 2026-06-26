@@ -1,6 +1,6 @@
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { PluginOption } from 'vite'
-import type { OptionsConfig, ProjectType } from '../types'
+import type { OptionsConfig } from '../types'
 import process from 'node:process'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
@@ -9,15 +9,14 @@ import { resolve } from 'pathe'
 import { ensurePackages } from '../ensure'
 import { extractOptions, loadPlugins } from '../utils'
 
-export async function loadVuePlugins(projectType: ProjectType, options: OptionsConfig): Promise<PluginOption[]> {
+export async function loadVuePlugins(options: OptionsConfig): Promise<PluginOption[]> {
   const { isBuild } = options
-  const isApp = projectType === 'app'
   const {
     devtools = false,
     i18n = false,
-    imports = isApp,
-    components = isApp,
-    pages = isApp,
+    imports = true,
+    components = true,
+    pages = true,
   } = extractOptions(options, 'vue')
 
   await ensurePackages([
@@ -68,7 +67,7 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
       },
     },
     {
-      condition: isApp && !!imports,
+      condition: !!imports,
       plugins: async () => {
         const module = await import('unplugin-auto-import/vite')
 
@@ -91,7 +90,7 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
       },
     },
     {
-      condition: isApp && !!components,
+      condition: !!components,
       plugins: async () => {
         const module = await import('unplugin-vue-components/vite')
         return [
@@ -107,7 +106,7 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
       },
     },
     {
-      condition: isApp && !!pages,
+      condition: !!pages,
       plugins: async () => {
         const module = await import('vue-router/vite')
         return [

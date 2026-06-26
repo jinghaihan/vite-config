@@ -41,20 +41,18 @@ export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOpti
     },
     {
       condition: !!metadata,
-      plugins: async () => {
-        return [
-          await MetadataPlugin(
-            typeof metadata === 'boolean'
-              ? undefined
-              : metadata,
-          ),
-        ]
-      },
+      plugins: async () => [
+        await MetadataPlugin(
+          typeof metadata === 'boolean'
+            ? undefined
+            : metadata,
+        ),
+      ],
     },
   ]))
 
   if (vue)
-    plugins.push(await loadVuePlugins('app', options))
+    plugins.push(await loadVuePlugins(options))
 
   return plugins
 }

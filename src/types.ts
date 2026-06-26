@@ -2,14 +2,11 @@ import type { PluginOptions as VueI18nPluginOptions } from '@intlify/unplugin-vu
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as VueComponentsPluginOptions } from 'unplugin-vue-components'
 import type { AliasOptions, PluginOption, UserConfig } from 'vite'
-import type { PluginOptions as DtsPluginOptions } from 'vite-plugin-dts'
 import type { VitePluginVueDevToolsOptions as VueDevtoolsPluginOptions } from 'vite-plugin-vue-devtools'
 import type { Options as VuePagesPluginOptions } from 'vue-router/unplugin'
 import type { AppLoadingPluginOptions } from './plugins/app-loading'
 import type { LicensePluginOptions } from './plugins/license'
 import type { MetadataPluginOptions } from './plugins/metadata'
-
-export type ProjectType = 'app' | 'lib'
 
 export interface CommonPluginOptions {
   /**
@@ -46,26 +43,16 @@ export interface AppPluginOptions {
    * You can customize the root element and loading template
    * Use `[app-loading-title]` as a placeholder to dynamically set the document title during loading`
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   appLoading?: boolean | AppLoadingPluginOptions
   /**
    * Injects metadata using `define`, accessible via `__VITE_APP_METADATA__`.
    * Includes information such as author, build time, version, and more.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   metadata?: boolean | MetadataPluginOptions
-}
-
-export interface LibPluginOptions {
-  /**
-   * https://github.com/qmhc/vite-plugin-dts
-   * Generates declaration files from .ts or .vue source files
-   *
-   * @default auto-detect based on `projectType === 'lib'`
-   */
-  dts?: boolean | DtsPluginOptions
 }
 
 export interface OptionsVue {
@@ -89,7 +76,7 @@ export interface OptionsVue {
    * Also supports auto-importing UI components from libraries like `ant-design-vue`, `element-plus`, etc
    * Files from `src/composables` and `src/utils` will also be auto-imported.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   imports?: boolean | VueImportsPluginOptions
   /**
@@ -97,7 +84,7 @@ export interface OptionsVue {
    * Enabled by default when the project type is `app`
    * The `directoryAsNamespace` option is enabled by default.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   components?: boolean | VueComponentsPluginOptions
   /**
@@ -105,24 +92,18 @@ export interface OptionsVue {
    * Enabled by default when the project type is `app`
    * Folder(s) to scan for files and generate routes. Defaults to scanning the pages directory.
    *
-   * @default auto-detect based on `projectType === 'app'`
+   * @default true
    */
   pages?: boolean | VuePagesPluginOptions
 }
 
-export interface OptionsConfig extends CommonPluginOptions, AppPluginOptions, LibPluginOptions {
+export interface OptionsConfig extends CommonPluginOptions, AppPluginOptions {
   /**
    * Whether to build for production
    *
    * @default auto-detect based on `command === 'build'`
    */
   isBuild?: boolean
-  /**
-   * Type of the project
-   *
-   * @default auto-detect based on the `index.html` file
-   */
-  type?: ProjectType
   /**
    * Aliases used to replace values in `import` or `require` statements
    * Paths are automatically resolved if needed

@@ -30,9 +30,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown --config-loader unrun",
+    "build": "tsdown",
     "deps": "taze major -I",
-    "catalog": "pncat",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
@@ -48,7 +47,6 @@
   "dependencies": {
     "unplugin-auto-import": "catalog:common-plugin",
     "vite-bundle-visualizer": "catalog:common-plugin",
-    "vite-plugin-dts": "catalog:common-plugin",
     "vite-plugin-dynamic-base": "catalog:common-plugin",
     "@antfu/install-pkg": "catalog:prod",
     "@clack/prompts": "catalog:prod",

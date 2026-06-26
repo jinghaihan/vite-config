@@ -1,5 +1,7 @@
 import { defineConfig } from 'tsdown'
-import { optionalDependencies, peerDependencies } from './package.json' with { type: 'json' }
+import pkg from './package.json' with { type: 'json' }
+
+const { optionalDependencies = {}, peerDependencies = {} } = pkg
 
 const reg = /[|\\{}()[\]^$+*?.]/g
 

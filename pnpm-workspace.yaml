@@ -11,7 +11,6 @@ catalogs:
   common-plugin:
     unplugin-auto-import: ^21.0.0
     vite-bundle-visualizer: ^1.2.1
-    vite-plugin-dts: ^5.0.3
     vite-plugin-dynamic-base: ^1.4.1
   dev:
     bumpp: ^11.1.0

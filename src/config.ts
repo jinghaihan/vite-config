@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite'
-import type { OptionsConfig } from '../types'
+import type { OptionsConfig } from './types'
 import process from 'node:process'
 import { isAbsolute, resolve } from 'pathe'
 

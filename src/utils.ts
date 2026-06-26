@@ -1,20 +1,14 @@
 import type { PackageJson } from 'pkg-types'
 import type { PluginOption } from 'vite'
-import type { ConditionPlugin, OptionsConfig, ProjectType, ResolvedOptions } from './types'
-import { existsSync } from 'node:fs'
+import type { ConditionPlugin, OptionsConfig, ResolvedOptions } from './types'
 import process from 'node:process'
 import deepmerge from 'deepmerge'
 import { any as findUp } from 'empathic/find'
-import { join } from 'pathe'
 import { readPackageJSON } from 'pkg-types'
 import { LOCK_FILES } from './constants'
 
 export function currentTime() {
   return new Date().toISOString()
-}
-
-export function getProjectType(): ProjectType {
-  return existsSync(join(process.cwd(), 'index.html')) ? 'app' : 'lib'
 }
 
 export async function mergePackageJSON(): Promise<PackageJson> {
