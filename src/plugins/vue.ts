@@ -109,7 +109,7 @@ export async function loadVuePlugins(projectType: ProjectType, options: OptionsC
     {
       condition: isApp && !!pages,
       plugins: async () => {
-        const module = await import('unplugin-vue-router/vite')
+        const module = await import('vue-router/vite')
         return [
           module.default(
             typeof pages === 'boolean'

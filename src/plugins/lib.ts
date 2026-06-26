@@ -16,9 +16,7 @@ export async function loadLibPlugins(options: OptionsConfig): Promise<PluginOpti
       plugins: () => [
         Dts(
           typeof dts === 'boolean'
-            ? {
-                logLevel: 'error',
-              }
+            ? undefined
             : dts,
         ),
       ],

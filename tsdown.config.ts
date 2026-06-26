@@ -1,5 +1,5 @@
 import { defineConfig } from 'tsdown'
-import { optionalDependencies, peerDependencies } from './package.json' assert { type: 'json' }
+import { optionalDependencies, peerDependencies } from './package.json' with { type: 'json' }
 
 const reg = /[|\\{}()[\]^$+*?.]/g
 

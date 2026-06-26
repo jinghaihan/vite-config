@@ -165,7 +165,7 @@ interface OptionsVue {
    */
   components?: boolean | VueComponentsPluginOptions
   /**
-   * https://github.com/posva/unplugin-vue-router
+   * https://router.vuejs.org/guide/file-based-routing.html
    * Enabled by default when the project type is `app`
    * Folder(s) to scan for files and generate routes. Defaults to scanning the pages directory.
    *

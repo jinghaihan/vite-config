@@ -8,6 +8,18 @@ allowBuilds:
 catalogs:
   build:
     tsdown: ^0.22.3
+  common-plugin:
+    '@intlify/unplugin-vue-i18n': ^11.2.4
+    '@originjs/vite-plugin-federation': ^1.4.1
+    '@vitejs/plugin-vue': ^6.0.7
+    '@vitejs/plugin-vue-jsx': ^5.1.6
+    unplugin-auto-import: ^21.0.0
+    unplugin-vue-components: ^32.1.0
+    vite-bundle-visualizer: ^1.2.1
+    vite-plugin-dts: ^5.0.3
+    vite-plugin-dynamic-base: ^1.4.1
+    vite-plugin-jspm: ^0.6.3
+    vite-plugin-vue-devtools: ^8.1.4
   dev:
     '@jspm/generator': ^2.16.2
     bumpp: ^11.1.0
@@ -18,30 +30,21 @@ catalogs:
     typescript: ^6.0.3
   inlined:
     deepmerge: ^4.3.1
-  lint:
-    '@octohash/eslint-config': ^0.4.1
-    eslint: ^10.5.0
-  plugin:
-    '@intlify/unplugin-vue-i18n': ^11.2.4
-    '@originjs/vite-plugin-federation': ^1.4.1
-    '@vitejs/plugin-vue': ^6.0.7
-    '@vitejs/plugin-vue-jsx': ^5.1.6
-    unplugin-auto-import: ^21.0.0
-    unplugin-vue-components: ^32.1.0
-    unplugin-vue-router: ^0.19.0
-    vite-bundle-visualizer: ^1.2.1
-    vite-plugin-dts: ^5.0.3
-    vite-plugin-dynamic-base: ^1.4.1
-    vite-plugin-jspm: ^0.6.3
-    vite-plugin-vue-devtools: ^8.1.4
-  prod:
-    '@antfu/install-pkg': ^1.1.0
-    '@clack/prompts': ^1.6.0
     empathic: ^2.0.1
     local-pkg: ^1.2.1
     pathe: ^2.0.3
     pkg-types: ^2.3.1
+  lint:
+    '@octohash/eslint-config': ^0.4.1
+    eslint: ^10.5.0
+  prod:
+    '@antfu/install-pkg': ^1.1.0
+    '@clack/prompts': ^1.6.0
   test:
     vitest: ^4.1.9
   types:
     '@types/node': ^26.0.1
+  vue-plugin:
+    '@vue/compiler-sfc': ^3.5.39
+    vue: ^3.5.39
+    vue-router: ^5.1.0

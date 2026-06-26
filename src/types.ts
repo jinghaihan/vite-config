@@ -2,10 +2,10 @@ import type { PluginOptions as VueI18nPluginOptions } from '@intlify/unplugin-vu
 import type { VitePluginFederationOptions as FederationPluginOptions } from '@originjs/vite-plugin-federation'
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as VueComponentsPluginOptions } from 'unplugin-vue-components'
-import type { Options as VuePagesPluginOptions } from 'unplugin-vue-router'
 import type { AliasOptions, PluginOption, UserConfig } from 'vite'
 import type { PluginOptions as DtsPluginOptions } from 'vite-plugin-dts'
 import type { VitePluginVueDevToolsOptions as VueDevtoolsPluginOptions } from 'vite-plugin-vue-devtools'
+import type { Options as VuePagesPluginOptions } from 'vue-router/unplugin'
 import type { AppLoadingPluginOptions } from './plugins/app-loading'
 import type { ImportMapPluginOptions } from './plugins/import-map'
 import type { LicensePluginOptions } from './plugins/license'
@@ -115,7 +115,7 @@ export interface OptionsVue {
    */
   components?: boolean | VueComponentsPluginOptions
   /**
-   * https://github.com/posva/unplugin-vue-router
+   * https://router.vuejs.org/guide/file-based-routing.html
    * Enabled by default when the project type is `app`
    * Folder(s) to scan for files and generate routes. Defaults to scanning the pages directory.
    *
