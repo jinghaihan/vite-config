@@ -46,26 +46,23 @@
     "vite": ">=8.0.0"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "catalog:common-plugin",
-    "@vitejs/plugin-vue-jsx": "catalog:common-plugin",
     "unplugin-auto-import": "catalog:common-plugin",
-    "unplugin-vue-components": "catalog:common-plugin",
     "vite-bundle-visualizer": "catalog:common-plugin",
     "vite-plugin-dts": "catalog:common-plugin",
     "vite-plugin-dynamic-base": "catalog:common-plugin",
     "@antfu/install-pkg": "catalog:prod",
     "@clack/prompts": "catalog:prod",
+    "@vitejs/plugin-vue": "catalog:vue-plugin",
+    "@vitejs/plugin-vue-jsx": "catalog:vue-plugin",
+    "unplugin-vue-components": "catalog:vue-plugin",
     "vue-router": "catalog:vue-plugin"
   },
   "optionalDependencies": {
-    "@intlify/unplugin-vue-i18n": "catalog:common-plugin",
-    "@originjs/vite-plugin-federation": "catalog:common-plugin",
-    "vite-plugin-jspm": "catalog:common-plugin",
-    "vite-plugin-vue-devtools": "catalog:common-plugin"
+    "@intlify/unplugin-vue-i18n": "catalog:vue-plugin",
+    "vite-plugin-vue-devtools": "catalog:vue-plugin"
   },
   "devDependencies": {
     "tsdown": "catalog:build",
-    "@jspm/generator": "catalog:dev",
     "bumpp": "catalog:dev",
     "nano-staged": "catalog:dev",
     "pncat": "catalog:dev",
@@ -80,9 +77,7 @@
     "@octohash/eslint-config": "catalog:lint",
     "eslint": "catalog:lint",
     "vitest": "catalog:test",
-    "@types/node": "catalog:types",
-    "@vue/compiler-sfc": "catalog:vue-plugin",
-    "vue": "catalog:vue-plugin"
+    "@types/node": "catalog:types"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm nano-staged"
@@ -91,8 +86,6 @@
     "*": "eslint --fix"
   },
   "inlinedDependencies": {
-    "@jspm/generator": "2.16.2",
-    "@jspm/import-map": "1.5.0",
     "acorn": "8.16.0",
     "confbox": "0.2.4",
     "deepmerge": "4.3.1",

@@ -3,17 +3,14 @@ import type { OptionsConfig } from '../types'
 import { loadPlugins } from '../utils'
 import { AppLoadingPlugin } from './app-loading'
 import { loadCommonPlugins } from './common'
-import { ImportMapPlugin } from './import-map'
 import { MetadataPlugin } from './metadata'
 import { loadVuePlugins } from './vue'
 
 export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOption[]> {
   const {
-    isBuild,
     dynamicBase,
     appLoading = true,
     metadata = true,
-    importMap = false,
     vue,
   } = options
 
@@ -50,18 +47,6 @@ export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOpti
             typeof metadata === 'boolean'
               ? undefined
               : metadata,
-          ),
-        ]
-      },
-    },
-    {
-      condition: isBuild && !!importMap,
-      plugins: () => {
-        return [
-          ImportMapPlugin(
-            typeof importMap === 'boolean'
-              ? undefined
-              : importMap,
           ),
         ]
       },

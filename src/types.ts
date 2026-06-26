@@ -1,5 +1,4 @@
 import type { PluginOptions as VueI18nPluginOptions } from '@intlify/unplugin-vue-i18n'
-import type { VitePluginFederationOptions as FederationPluginOptions } from '@originjs/vite-plugin-federation'
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as VueComponentsPluginOptions } from 'unplugin-vue-components'
 import type { AliasOptions, PluginOption, UserConfig } from 'vite'
@@ -7,7 +6,6 @@ import type { PluginOptions as DtsPluginOptions } from 'vite-plugin-dts'
 import type { VitePluginVueDevToolsOptions as VueDevtoolsPluginOptions } from 'vite-plugin-vue-devtools'
 import type { Options as VuePagesPluginOptions } from 'vue-router/unplugin'
 import type { AppLoadingPluginOptions } from './plugins/app-loading'
-import type { ImportMapPluginOptions } from './plugins/import-map'
 import type { LicensePluginOptions } from './plugins/license'
 import type { MetadataPluginOptions } from './plugins/metadata'
 
@@ -34,11 +32,6 @@ export interface CommonPluginOptions {
    * @default true
    */
   license?: boolean | LicensePluginOptions
-  /**
-   * https://github.com/originjs/vite-plugin-federation
-   * Module federation
-   */
-  federation?: FederationPluginOptions
 }
 
 export interface AppPluginOptions {
@@ -63,13 +56,6 @@ export interface AppPluginOptions {
    * @default auto-detect based on `projectType === 'app'`
    */
   metadata?: boolean | MetadataPluginOptions
-  /**
-   * Generates an import map for the project.
-   * Based on https://github.com/jspm/vite-plugin-jspm, with extended CDN provider support and options for include/exclude.
-   *
-   * @default false
-   */
-  importMap?: boolean | ImportMapPluginOptions
 }
 
 export interface LibPluginOptions {

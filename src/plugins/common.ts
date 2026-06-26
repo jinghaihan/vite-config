@@ -1,15 +1,10 @@
 import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
-import { ensurePackages } from '../ensure'
 import { loadPlugins } from '../utils'
 import { LicensePlugin } from './license'
 
 export async function loadCommonPlugins(options: OptionsConfig): Promise<PluginOption[]> {
-  const { isBuild, visualizer = false, license = true, federation } = options
-
-  ensurePackages([
-    federation ? '@originjs/vite-plugin-federation' : undefined,
-  ])
+  const { isBuild, visualizer = false, license = true } = options
 
   return await loadPlugins([
     {
@@ -37,15 +32,6 @@ export async function loadCommonPlugins(options: OptionsConfig): Promise<PluginO
             : license,
         ),
       ],
-    },
-    {
-      condition: !!federation,
-      plugins: async () => {
-        const module = await import('@originjs/vite-plugin-federation')
-        return [
-          module.default(federation!),
-        ]
-      },
     },
   ])
 }

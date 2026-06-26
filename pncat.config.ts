@@ -3,13 +3,13 @@ import { defineConfig, mergeCatalogRules } from 'pncat'
 export default defineConfig({
   catalogRules: mergeCatalogRules([
     {
-      name: 'common-plugin',
-      match: [/plugin/, /bundle/],
+      name: 'vue-plugin',
+      match: [/vue/],
       priority: 0,
     },
     {
-      name: 'vue-plugin',
-      match: [/vue/],
+      name: 'common-plugin',
+      match: [/plugin/, /bundle/],
       priority: 0,
     },
     {

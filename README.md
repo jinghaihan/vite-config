@@ -71,12 +71,6 @@ interface OptionsConfig {
    * @default true
    */
   license?: boolean | LicensePluginOptions
-  /**
-   * https://github.com/originjs/vite-plugin-federation
-   * Module federation
-   */
-  federation?: FederationPluginOptions
-
   // Application Plugin
   /**
    * https://github.com/chenxch/vite-plugin-dynamic-base
@@ -99,14 +93,6 @@ interface OptionsConfig {
    * @default auto-detect based on `projectType === 'app'`
    */
   metadata?: boolean | MetadataPluginOptions
-  /**
-   * Generates an import map for the project.
-   * Based on https://github.com/jspm/vite-plugin-jspm, with extended CDN provider support and options for include/exclude.
-   *
-   * @default false
-   */
-  importMap?: boolean | ImportMapPluginOptions
-
   // Library Plugin
   /**
    * https://github.com/qmhc/vite-plugin-dts

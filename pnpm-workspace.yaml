@@ -9,19 +9,11 @@ catalogs:
   build:
     tsdown: ^0.22.3
   common-plugin:
-    '@intlify/unplugin-vue-i18n': ^11.2.4
-    '@originjs/vite-plugin-federation': ^1.4.1
-    '@vitejs/plugin-vue': ^6.0.7
-    '@vitejs/plugin-vue-jsx': ^5.1.6
     unplugin-auto-import: ^21.0.0
-    unplugin-vue-components: ^32.1.0
     vite-bundle-visualizer: ^1.2.1
     vite-plugin-dts: ^5.0.3
     vite-plugin-dynamic-base: ^1.4.1
-    vite-plugin-jspm: ^0.6.3
-    vite-plugin-vue-devtools: ^8.1.4
   dev:
-    '@jspm/generator': ^2.16.2
     bumpp: ^11.1.0
     nano-staged: ^1.0.2
     pncat: ^0.12.0
@@ -45,6 +37,9 @@ catalogs:
   types:
     '@types/node': ^26.0.1
   vue-plugin:
-    '@vue/compiler-sfc': ^3.5.39
-    vue: ^3.5.39
+    '@intlify/unplugin-vue-i18n': ^11.2.4
+    '@vitejs/plugin-vue': ^6.0.7
+    '@vitejs/plugin-vue-jsx': ^5.1.6
+    unplugin-vue-components: ^32.1.0
+    vite-plugin-vue-devtools: ^8.1.4
     vue-router: ^5.1.0
