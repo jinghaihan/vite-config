@@ -1,4 +1,5 @@
 import type { PluginOptions as VueI18nPluginOptions } from '@intlify/unplugin-vue-i18n'
+import type { VitePluginConfig as UnocssPluginOptions } from 'unocss/vite'
 import type { Options as VueImportsPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as VueComponentsPluginOptions } from 'unplugin-vue-components'
 import type { AliasOptions, PluginOption, UserConfig } from 'vite'
@@ -53,6 +54,13 @@ export interface AppPluginOptions {
    * @default true
    */
   metadata?: boolean | MetadataPluginOptions
+  /**
+   * https://unocss.dev/integrations/vite
+   * Enable UnoCSS when `unocss` is installed.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  unocss?: boolean | UnocssPluginOptions
 }
 
 export interface OptionsVue {

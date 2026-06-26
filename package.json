@@ -41,8 +41,25 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
+    "@intlify/unplugin-vue-i18n": ">=11.0.0",
     "@unhead/vue": ">=2.0.0",
-    "vite": ">=8.0.0"
+    "unocss": ">=66.0.0",
+    "vite": ">=8.0.0",
+    "vite-plugin-vue-devtools": ">=8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@intlify/unplugin-vue-i18n": {
+      "optional": true
+    },
+    "@unhead/vue": {
+      "optional": true
+    },
+    "unocss": {
+      "optional": true
+    },
+    "vite-plugin-vue-devtools": {
+      "optional": true
+    }
   },
   "dependencies": {
     "unplugin-auto-import": "catalog:common-plugin",
@@ -55,12 +72,9 @@
     "unplugin-vue-components": "catalog:vue-plugin",
     "vue-router": "catalog:vue-plugin"
   },
-  "optionalDependencies": {
-    "@intlify/unplugin-vue-i18n": "catalog:vue-plugin",
-    "vite-plugin-vue-devtools": "catalog:vue-plugin"
-  },
   "devDependencies": {
     "tsdown": "catalog:build",
+    "unocss": "catalog:common-plugin",
     "bumpp": "catalog:dev",
     "nano-staged": "catalog:dev",
     "pncat": "catalog:dev",
@@ -75,7 +89,9 @@
     "@octohash/eslint-config": "catalog:lint",
     "eslint": "catalog:lint",
     "vitest": "catalog:test",
-    "@types/node": "catalog:types"
+    "@types/node": "catalog:types",
+    "@intlify/unplugin-vue-i18n": "catalog:vue-plugin",
+    "vite-plugin-vue-devtools": "catalog:vue-plugin"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm nano-staged"

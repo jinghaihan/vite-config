@@ -10,6 +10,7 @@ export * from './types'
 
 export function defineConfig(options: OptionsConfig) {
   const resolved = {
+    unocss: isPackageExists('unocss'),
     vue: VUE_PACKAGES.some(pkg => isPackageExists(pkg)),
     ...options,
   }

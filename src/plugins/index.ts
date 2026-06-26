@@ -1,5 +1,6 @@
 import type { PluginOption } from 'vite'
 import type { OptionsConfig } from '../types'
+import { ensurePackages } from '../ensure'
 import { loadPlugins } from '../utils'
 import { AppLoadingPlugin } from './app-loading'
 import { loadCommonPlugins } from './common'
@@ -11,8 +12,13 @@ export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOpti
     dynamicBase,
     appLoading = true,
     metadata = true,
+    unocss = false,
     vue,
   } = options
+
+  await ensurePackages([
+    unocss ? 'unocss' : undefined,
+  ])
 
   const plugins: PluginOption[] = await loadCommonPlugins(options)
 
@@ -53,6 +59,22 @@ export async function loadAppPlugins(options: OptionsConfig): Promise<PluginOpti
 
   if (vue)
     plugins.push(await loadVuePlugins(options))
+
+  plugins.push(await loadPlugins([
+    {
+      condition: !!unocss,
+      plugins: async () => {
+        const module = await import('unocss/vite')
+        return [
+          module.default(
+            typeof unocss === 'boolean'
+              ? undefined
+              : unocss,
+          ),
+        ]
+      },
+    },
+  ]))
 
   return plugins
 }
